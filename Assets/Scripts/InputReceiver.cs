@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class InputReceiver : MonoBehaviour {
 
-	private Vector2 m_firingDirection;
 	private float m_firingClock;
 	public float m_firingThroughput = 0.2f;
 	public GameObject m_bulletPrefab;
 
 	// Use this for initialization
 	void Start () {
-		m_firingDirection = new Vector2(0f, 1f);
 		m_firingClock = 0f;
 	}
 	
@@ -21,11 +19,9 @@ public class InputReceiver : MonoBehaviour {
 		float iy = Input.GetAxis("Vertical 1");
 		float sx = Input.GetAxis("Horizontal 2");
 		float sy = Input.GetAxis("Vertical 2");
-		bool fire = Input.GetKeyDown(KeyCode.A);
 
 		Vector2 impulse = new Vector2(ix, iy);
-		m_firingDirection = new Vector2(sx, sy);
-		m_firingDirection.Normalize();
+		Vector2 firingDirection = new Vector2(sx, sy);
 
 		float dt = Time.deltaTime;
 		Vector2 move = impulse * dt;
@@ -34,11 +30,12 @@ public class InputReceiver : MonoBehaviour {
 		Transform t = gameObject.GetComponent(typeof(Transform)) as Transform;
 		t.position += new Vector3(move.x, move.y);
 
-		if (fire) {
+		if (firingDirection.magnitude > 0f) {
+			firingDirection.Normalize();
 			if (m_firingClock >= m_firingThroughput) {
 				GameObject bObject = Instantiate(m_bulletPrefab, t.position, Quaternion.identity);
 				Projectile bullet = bObject.GetComponent(typeof(Projectile)) as Projectile;
-				bullet.Shoot(m_firingDirection);
+				bullet.Shoot(firingDirection);
 				m_firingClock = 0f;
 			}
 		} else
