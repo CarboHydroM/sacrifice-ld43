@@ -6,11 +6,14 @@ public class MonsterController : MonoBehaviour {
 
     public Vector2 moveDir;
     public float speed = 1f;
+    public BoxCollider2D unloadColider;
+
+    float spawnTime;
 
     // Use this for initialization
     void Start () {
-		
-	}
+        spawnTime = Time.fixedTime;
+    }
 
     // Update is called once per frame
     void Update () {
@@ -20,7 +23,13 @@ public class MonsterController : MonoBehaviour {
         gameObject.transform.rotation = quat;
         Debug.Log("dir " + moveDir.x.ToString() + " " + moveDir.y.ToString());
 
-        gameObject.transform.position = gameObject.transform.position + moveDir3 * speed;
+        gameObject.transform.position = gameObject.transform.position + moveDir3 * (speed / Time.deltaTime);
+
+        if (Time.fixedTime - spawnTime > 1f)
+        {
+            if (unloadColider.IsTouching(gameObject.GetComponent<Collider2D>()) == false)
+                Destroy(gameObject);
+        }
     }
 
     public void MoveDir(Vector2 dir)
