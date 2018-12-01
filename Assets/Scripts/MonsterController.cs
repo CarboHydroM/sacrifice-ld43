@@ -21,7 +21,6 @@ public class MonsterController : MonoBehaviour {
         Vector3 moveDir3 = new Vector3(moveDir.x, moveDir.y, 0f);
         quat.SetLookRotation(new Vector3(0f, 0f, 1f), moveDir3);
         gameObject.transform.rotation = quat;
-        Debug.Log("dir " + moveDir.x.ToString() + " " + moveDir.y.ToString());
 
         gameObject.transform.position = gameObject.transform.position + moveDir3 * (speed / Time.deltaTime);
 
@@ -45,5 +44,15 @@ public class MonsterController : MonoBehaviour {
     public void Fire()
     {
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Projectile proj = other.gameObject.GetComponent<Projectile>();
+        if(proj)
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }

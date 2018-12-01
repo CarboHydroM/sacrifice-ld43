@@ -7,6 +7,7 @@ public class InputReceiver : MonoBehaviour {
 	private float m_firingClock;
 	public float m_firingThroughput = 0.2f;
 	public GameObject m_bulletPrefab;
+    public float m_speed = 10f;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,7 @@ public class InputReceiver : MonoBehaviour {
 		Vector2 firingDirection = new Vector2(sx, sy);
 
 		float dt = Time.deltaTime;
-		Vector2 move = impulse * dt;
+		Vector2 move = impulse * dt * m_speed;
 		m_firingClock += dt;
 
 		Transform t = gameObject.GetComponent(typeof(Transform)) as Transform;
