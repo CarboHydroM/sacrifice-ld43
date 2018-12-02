@@ -8,6 +8,10 @@ public class InputReceiver : MonoBehaviour {
 	public float m_firingThroughput = 0.2f;
 	public GameObject m_bulletPrefab;
     public float m_speed = 10f;
+    public string m_moveXAxis;
+    public string m_moveYAxis;
+    public string m_fireXAxis;
+    public string m_fireYAxis;
 
 	// Use this for initialization
 	void Start () {
@@ -16,10 +20,10 @@ public class InputReceiver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float ix = Input.GetAxis("Horizontal 1");
-		float iy = Input.GetAxis("Vertical 1");
-		float sx = Input.GetAxis("Horizontal 2");
-		float sy = Input.GetAxis("Vertical 2");
+		float ix = Input.GetAxis(m_moveXAxis);
+		float iy = Input.GetAxis(m_moveYAxis);
+		float sx = Input.GetAxis(m_fireXAxis);
+		float sy = Input.GetAxis(m_fireYAxis);
 
 		Vector2 impulse = new Vector2(ix, iy);
 		Vector2 firingDirection = new Vector2(sx, sy);
