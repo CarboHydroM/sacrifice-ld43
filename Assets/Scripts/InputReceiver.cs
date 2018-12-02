@@ -6,8 +6,12 @@ public class InputReceiver : MonoBehaviour {
 
     public int playerIndex = 666;
 	private float m_firingClock;
-	public float m_firingThroughput = 0.2f;
-	public GameObject m_bulletPrefab;
+    private int m_bulletCount;
+    private float m_bulletClock;
+	public float m_firingCycle = 0.6f;
+    public int m_bulletsPerShot = 4;
+    public float m_bulletDelay = 0.05f;
+    public GameObject m_bulletPrefab;
     public GameObject m_nacelle;
     public float m_speed = 10f;
     public string m_moveXAxis;
@@ -18,6 +22,8 @@ public class InputReceiver : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_firingClock = 0f;
+        m_bulletClock = 0f;
+        m_bulletCount = 0;
 	}
 	
 	// Update is called once per frame
@@ -32,12 +38,9 @@ public class InputReceiver : MonoBehaviour {
 
 		float dt = Time.deltaTime;
 		Vector2 move = impulse * dt * m_speed;
-		m_firingClock += dt;
-
 		Transform t = gameObject.GetComponent(typeof(Transform)) as Transform;
         //t.position += new Vector3(move.x, move.y);
         t.position += new Vector3(move.x, 0f);
-
 
         Vector3 nacellePos = m_nacelle.transform.position;
         CompositeCollider2D nacelleCollider = m_nacelle.GetComponent<CompositeCollider2D>();
@@ -47,18 +50,43 @@ public class InputReceiver : MonoBehaviour {
         if (t.position.x > nacelleBounds.max.x - 1f)
             t.position = new Vector3(nacelleBounds.max.x - 1f, t.position.y);
 
+        if (firingDirection.magnitude > 0f)
+        {
+            firingDirection.Normalize();
 
-        if (firingDirection.magnitude > 0f) {
-			firingDirection.Normalize();
-			if (m_firingClock >= m_firingThroughput) {
-				GameObject bObject = Instantiate(m_bulletPrefab, t.position, Quaternion.identity);
-				Projectile bullet = bObject.GetComponent(typeof(Projectile)) as Projectile;
-                bullet.launcher = gameObject;
-
-                bullet.Shoot(firingDirection);
-				m_firingClock = 0f;
-			}
-		} else
-			m_firingClock = 0f;
-	}
+            if (m_firingClock > m_firingCycle)
+            {
+                m_firingClock = 0f;
+                m_bulletCount = 0;
+            }
+            else
+            {
+                if (m_bulletCount < m_bulletsPerShot)
+                {
+                    if (m_bulletClock > m_bulletDelay)
+                    {
+                        m_bulletClock = 0f;
+                    }
+                    else
+                    {
+                        if (m_bulletClock == 0f)
+                        {
+                            GameObject bObject = Instantiate(m_bulletPrefab, t.position, Quaternion.identity);
+                            Projectile bullet = bObject.GetComponent(typeof(Projectile)) as Projectile;
+                            bullet.Shoot(firingDirection);
+                            bullet.launcher = gameObject;
+                            m_bulletCount++;
+                        }
+                        m_bulletClock += dt;
+                    }
+                }
+                m_firingClock += dt;
+            }
+        }
+        else
+        {
+            m_firingClock = 0f;
+            m_bulletCount = 0;
+        }
+    }
 }
