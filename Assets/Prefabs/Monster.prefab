@@ -210,6 +210,8 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0}
   speed: 0.002
   unloadColider: {fileID: 0}
+  explosionPrefab: {fileID: 1680714478733238, guid: b3c0257391fec8b42a663aceb7e5b34c,
+    type: 2}
 --- !u!212 &212083254387545662
 SpriteRenderer:
   m_ObjectHideFlags: 1

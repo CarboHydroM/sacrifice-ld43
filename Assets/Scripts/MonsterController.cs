@@ -7,6 +7,7 @@ public class MonsterController : MonoBehaviour {
     public Vector2 moveDir;
     public float speed = 1f;
     public BoxCollider2D unloadColider;
+    public GameObject explosionPrefab;
     private AudioSource audioSource;
 
     float spawnTime;
@@ -63,6 +64,7 @@ public class MonsterController : MonoBehaviour {
                 PartyStat stat = party.GetComponent<PartyStat>();
                 stat.score[playerIndex] += 1;
             }
+            Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
