@@ -12,14 +12,13 @@ public class GameState : MonoBehaviour {
 
     PartyStat partyInstance;
 
-    enum State
+    /*enum State
     {
         MainMenu,
         InGame,
-        InGameMenu,
     }
 
-    State m_state = State.MainMenu;
+    State m_state = State.MainMenu;*/
 
     // Use this for initialization
     void Start () {
@@ -43,6 +42,7 @@ public class GameState : MonoBehaviour {
         partyInstance = Instantiate(partyPrefab).GetComponent<PartyStat>();
         partyInstance.gameStat = this;
         partyInstance.inGameMenuCanvas = inGameMenuCanvas;
+        //m_state = State.MainMenu;
     }
 
     public void OnExitParty()
@@ -50,6 +50,7 @@ public class GameState : MonoBehaviour {
         mainMenuCanvas.SetActive(true);
         ingameCanvas.SetActive(false);
         partyInstance.OnExitParty();
+        //m_state = State.InGame;
     }
 
     public void OnLevelResume()

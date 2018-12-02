@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224152229064345868}
   - component: {fileID: 222510827798238954}
   - component: {fileID: 114226058533848880}
-  - component: {fileID: 114784156368135708}
   m_Layer: 5
   m_Name: PlayerScore
   m_TagString: Untagged
@@ -62,18 +61,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
---- !u!114 &114784156368135708
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415082358591534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001d80d1de1447a4e939ef135af150f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIndex: 0
 --- !u!222 &222510827798238954
 CanvasRenderer:
   m_ObjectHideFlags: 1

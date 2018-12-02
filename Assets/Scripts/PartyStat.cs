@@ -41,6 +41,6 @@ public class PartyStat : MonoBehaviour {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game"));
         inGameMenuCanvas.SetActive(false);
         Destroy(gameObject);
-        SceneManager.UnloadScene("Scenes/Level1");
+        SceneManager.UnloadSceneAsync("Scenes/Level1");
     }
 }
