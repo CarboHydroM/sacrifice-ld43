@@ -20,6 +20,8 @@ public class MonsterController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (Time.deltaTime < 0.00000001f)
+            return;               
         Quaternion quat = new Quaternion();
         Vector3 moveDir3 = new Vector3(moveDir.x, moveDir.y, 0f);
         quat.SetLookRotation(new Vector3(0f, 0f, 1f), moveDir3);

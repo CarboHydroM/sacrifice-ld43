@@ -7,7 +7,10 @@ public class GameState : MonoBehaviour {
 
     public GameObject mainMenuCanvas;
     public GameObject ingameCanvas;
+    public GameObject inGameMenuCanvas;
     public GameObject partyPrefab;
+
+    PartyStat partyInstance;
 
     enum State
     {
@@ -26,7 +29,7 @@ public class GameState : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-	}
+    }
 
     public void OnQuit()
     {
@@ -37,8 +40,21 @@ public class GameState : MonoBehaviour {
     {
         mainMenuCanvas.SetActive(false);
         ingameCanvas.SetActive(true);
-        Instantiate(partyPrefab);
-
-        SceneManager.LoadScene("Scenes/Level1", LoadSceneMode.Additive);
+        partyInstance = Instantiate(partyPrefab).GetComponent<PartyStat>();
+        partyInstance.gameStat = this;
+        partyInstance.inGameMenuCanvas = inGameMenuCanvas;
     }
+
+    public void OnExitParty()
+    {
+        mainMenuCanvas.SetActive(true);
+        ingameCanvas.SetActive(false);
+        partyInstance.OnExitParty();
+    }
+
+    public void OnLevelResume()
+    {
+        partyInstance.OnLevelResume();
+    }
+
 }
