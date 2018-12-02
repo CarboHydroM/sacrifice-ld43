@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour {
 
     public float timeToSpawn = 1f;
     public GameObject monster;
-    public BoxCollider2D unloadColider;
+    public BoxCollider2D unloadCollider;
 
     float lastSpawn = 0f;
 
@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour {
             Vector3 pos = gameObject.transform.position + new Vector3(x, y, 0);
             GameObject newMonster = Instantiate(monster, pos, Quaternion.identity);
             MonsterController ai = newMonster.GetComponent<MonsterController>();
-            ai.unloadColider = unloadColider;
+            ai.unloadCollider = unloadCollider;
         }
     }
 }

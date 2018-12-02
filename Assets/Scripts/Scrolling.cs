@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Scrolling : MonoBehaviour {
     /// Scrolling speed. This must include the balloon speed.
-    public float scrollingSpeed = 10.1f;
+    public float scrollingSpeed = 30.1f;
     /// Add a randomness [0, speedFactor] to the scrolling speed. It also
     /// affects the Z value (simulated by scalling).
     public float speedFactor = 2.0f;
 
     /// Scale up the entity by this factor depending on its speed
-    public float scaleFactor = 5.0f;
+    public float scaleFactor = 30.0f;
 
     // Use this for initialization
     void Start () {
-	float factor = Random.Range(0, speedFactor);
+	float factor = Random.Range(0f, speedFactor);
 	scrollingSpeed += factor;
 	Vector3 pos = transform.position;
 	pos.z += factor * 10.0f;
