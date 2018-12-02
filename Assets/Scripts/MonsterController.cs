@@ -7,12 +7,14 @@ public class MonsterController : MonoBehaviour {
     public Vector2 moveDir;
     public float speed = 1f;
     public BoxCollider2D unloadColider;
+    private AudioSource audioSource;
 
     float spawnTime;
 
     // Use this for initialization
     void Start () {
         spawnTime = Time.fixedTime;
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,8 +51,9 @@ public class MonsterController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         Projectile proj = other.gameObject.GetComponent<Projectile>();
-        if(proj)
+        if (proj)
         {
+            audioSource.Play();
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
