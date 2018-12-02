@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour {
 
 	private Vector2 m_direction;
 	public float m_speed;
+    public GameObject launcher;
 
 	public void Shoot(Vector2 direction) {
 		m_direction = direction;

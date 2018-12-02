@@ -199,6 +199,11 @@ Prefab:
       propertyPath: m_nacelle
       value: 
       objectReference: {fileID: 448740852}
+    - target: {fileID: 114557182671299130, guid: f49325273eb404a019e8c9d79d9d8389,
+        type: 2}
+      propertyPath: playerIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49325273eb404a019e8c9d79d9d8389, type: 2}
   m_IsPrefabAsset: 0
@@ -602,6 +607,11 @@ Prefab:
       propertyPath: m_fireYAxis
       value: Fire Y 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114557182671299130, guid: f49325273eb404a019e8c9d79d9d8389,
+        type: 2}
+      propertyPath: playerIndex
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49325273eb404a019e8c9d79d9d8389, type: 2}
   m_IsPrefabAsset: 0
@@ -691,6 +701,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114557182671299130, guid: f49325273eb404a019e8c9d79d9d8389,
+        type: 2}
+      propertyPath: playerIndex
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49325273eb404a019e8c9d79d9d8389, type: 2}
   m_IsPrefabAsset: 0
@@ -779,6 +794,11 @@ Prefab:
         type: 2}
       propertyPath: m_fireYAxis
       value: Fire Y 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557182671299130, guid: f49325273eb404a019e8c9d79d9d8389,
+        type: 2}
+      propertyPath: playerIndex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49325273eb404a019e8c9d79d9d8389, type: 2}

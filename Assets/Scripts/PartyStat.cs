@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Party : MonoBehaviour {
+public class PartyStat : MonoBehaviour {
     public int[] score = { 0, 0, 0, 0 };
 
     public void Reset()

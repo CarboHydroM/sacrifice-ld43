@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputReceiver : MonoBehaviour {
 
+    public int playerIndex = 666;
 	private float m_firingClock;
 	public float m_firingThroughput = 0.2f;
 	public GameObject m_bulletPrefab;
@@ -52,7 +53,9 @@ public class InputReceiver : MonoBehaviour {
 			if (m_firingClock >= m_firingThroughput) {
 				GameObject bObject = Instantiate(m_bulletPrefab, t.position, Quaternion.identity);
 				Projectile bullet = bObject.GetComponent(typeof(Projectile)) as Projectile;
-				bullet.Shoot(firingDirection);
+                bullet.launcher = gameObject;
+
+                bullet.Shoot(firingDirection);
 				m_firingClock = 0f;
 			}
 		} else

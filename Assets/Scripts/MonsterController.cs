@@ -54,6 +54,15 @@ public class MonsterController : MonoBehaviour {
         if (proj)
         {
             audioSource.Play();
+            GameObject launcher = proj.launcher;
+            InputReceiver inputRceiver = launcher.GetComponent<InputReceiver>();
+            if(inputRceiver)  // Fired by a player
+            {
+                int playerIndex = inputRceiver.playerIndex;
+                GameObject party = GameObject.FindGameObjectWithTag("Party");
+                PartyStat stat = party.GetComponent<PartyStat>();
+                stat.score[playerIndex] += 1;
+            }
             Destroy(gameObject);
             Destroy(other.gameObject);
         }

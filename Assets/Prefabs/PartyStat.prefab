@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4630071429347740}
   - component: {fileID: 114362470408563536}
   m_Layer: 0
-  m_Name: Party
-  m_TagString: Untagged
+  m_Name: PartyStat
+  m_TagString: Party
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
