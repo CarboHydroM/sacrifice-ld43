@@ -7,6 +7,7 @@ public class InputReceiver : MonoBehaviour {
 	private float m_firingClock;
 	public float m_firingThroughput = 0.2f;
 	public GameObject m_bulletPrefab;
+    public GameObject m_nacelle;
     public float m_speed = 10f;
 
 	// Use this for initialization
@@ -29,9 +30,20 @@ public class InputReceiver : MonoBehaviour {
 		m_firingClock += dt;
 
 		Transform t = gameObject.GetComponent(typeof(Transform)) as Transform;
-		t.position += new Vector3(move.x, move.y);
+        //t.position += new Vector3(move.x, move.y);
+        t.position += new Vector3(move.x, 0f);
 
-		if (firingDirection.magnitude > 0f) {
+
+        Vector3 nacellePos = m_nacelle.transform.position;
+        CompositeCollider2D nacelleCollider = m_nacelle.GetComponent<CompositeCollider2D>();
+        Bounds nacelleBounds = nacelleCollider.bounds;
+        if(t.position.x < nacelleBounds.min.x + 1f)
+            t.position = new Vector3(nacelleBounds.min.x + 1f, t.position.y);
+        if (t.position.x > nacelleBounds.max.x - 1f)
+            t.position = new Vector3(nacelleBounds.max.x - 1f, t.position.y);
+
+
+        if (firingDirection.magnitude > 0f) {
 			firingDirection.Normalize();
 			if (m_firingClock >= m_firingThroughput) {
 				GameObject bObject = Instantiate(m_bulletPrefab, t.position, Quaternion.identity);

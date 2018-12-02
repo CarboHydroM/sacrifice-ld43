@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - DebugCamera
+  - Nacelle
+  - Enemy
+  - EnemyBullet
+  - AllyBullet
   layers:
   - Default
   - TransparentFX
@@ -14,11 +18,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Players
+  - Nacelle
+  - Enemies
+  - AllyBullet
+  - EnemyBullet
   - 
   - 
   - 
