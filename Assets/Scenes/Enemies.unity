@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToSpawn: 1
   monster: {fileID: 1966645853560210, guid: 22158d0a85a74c049818e4d35369e278, type: 2}
-  unloadColider: {fileID: 1242819901}
+  unloadCollider: {fileID: 1242819901}
 --- !u!4 &1552533127
 Transform:
   m_ObjectHideFlags: 0

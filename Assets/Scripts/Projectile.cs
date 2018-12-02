@@ -4,29 +4,43 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
+    private Transform m_transform;
 	private Vector2 m_direction;
 	public float m_speed;
     public GameObject launcher;
 
 	public void Shoot(Vector2 direction) {
 		m_direction = direction;
-	}
+        m_transform = gameObject.GetComponent(typeof(Transform)) as Transform;
+    }
 
-	// Use this for initialization
-	void Start () {
+    public bool GoneBeyond(float xmax, float ymax)
+    {
+        float x = m_transform.position.x;
+        float y = m_transform.position.y;
+
+        // V0 checking here that we are out of range and ready to despawn
+        Camera c = Camera.main;
+        float d2 = (x * x) + (y * y);
+        float maxd2 = (xmax * xmax) +
+                    (ymax * ymax);
+        if (d2 > maxd2)
+            return true;
+
+        return false;
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Vector2 move = m_direction * m_speed * Time.deltaTime;
+		m_transform.position += new Vector3(move.x, move.y);
 
-		Transform t = gameObject.GetComponent(typeof(Transform)) as Transform;
-		t.position += new Vector3(move.x, move.y);
-
-		// V0 checking here that we are out of range and ready to despawn
-		Camera c = Camera.main;
-		if (t.position.y >= c.pixelHeight)
+		if (GoneBeyond(90f, 50f))
 			Destroy(gameObject);
 	}
 }

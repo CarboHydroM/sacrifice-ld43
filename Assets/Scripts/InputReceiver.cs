@@ -8,8 +8,8 @@ public class InputReceiver : MonoBehaviour {
 	private float m_firingClock;
     private int m_bulletCount;
     private float m_bulletClock;
-	public float m_firingCycle = 0.6f;
-    public int m_bulletsPerShot = 4;
+	public float m_firingCycle = 0.1f;
+    public int m_bulletsPerShot = 1;
     public float m_bulletDelay = 0.05f;
     public GameObject m_bulletPrefab;
     public GameObject m_nacelle;

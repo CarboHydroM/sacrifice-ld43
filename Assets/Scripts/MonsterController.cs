@@ -6,7 +6,7 @@ public class MonsterController : MonoBehaviour {
 
     public Vector2 moveDir;
     public float speed = 1f;
-    public BoxCollider2D unloadColider;
+    public BoxCollider2D unloadCollider;
     public GameObject explosionPrefab;
     private AudioSource audioSource;
 
@@ -31,7 +31,7 @@ public class MonsterController : MonoBehaviour {
 
         if (Time.fixedTime - spawnTime > 1f)
         {
-            if (unloadColider.IsTouching(gameObject.GetComponent<Collider2D>()) == false)
+            if (unloadCollider.IsTouching(gameObject.GetComponent<Collider2D>()) == false)
                 Destroy(gameObject);
         }
     }
