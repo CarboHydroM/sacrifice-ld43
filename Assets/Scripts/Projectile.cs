@@ -19,11 +19,8 @@ public class Projectile : MonoBehaviour {
         float x = m_transform.position.x;
         float y = m_transform.position.y;
 
-        // V0 checking here that we are out of range and ready to despawn
-        Camera c = Camera.main;
         float d2 = (x * x) + (y * y);
-        float maxd2 = (xmax * xmax) +
-                    (ymax * ymax);
+        float maxd2 = (xmax * xmax) + (ymax * ymax);
         if (d2 > maxd2)
             return true;
 
