@@ -68,7 +68,10 @@ public class MonsterController : MonoBehaviour {
                 stat.score[playerIndex] += 1;
             }
             Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
-            Instantiate(ammoCratePrefab, gameObject.transform.position, Quaternion.identity);
+            if (Random.Range(0f, 1f) <= 0.2f)
+            {
+                Instantiate(ammoCratePrefab, gameObject.transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
