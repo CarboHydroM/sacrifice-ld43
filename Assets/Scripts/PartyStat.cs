@@ -13,6 +13,8 @@ public class PartyStat : MonoBehaviour {
     public float nacelleSpeed = 0f;
     public GameState gameStat;
 
+    List<float> dropedPlayers = new List<float>();
+
     // Use this for initialization
     void Start () {
         SceneManager.LoadScene("Scenes/Level1", LoadSceneMode.Additive);
@@ -25,8 +27,8 @@ public class PartyStat : MonoBehaviour {
 
         if (Input.GetButton("Menu"))
         {
-            inGameMenuCanvas.SetActive(true);
             Time.timeScale = 0f;
+            inGameMenuCanvas.SetActive(true);
         }
     }
 
@@ -42,5 +44,14 @@ public class PartyStat : MonoBehaviour {
         inGameMenuCanvas.SetActive(false);
         Destroy(gameObject);
         SceneManager.UnloadSceneAsync("Scenes/Level1");
+        Time.timeScale = 1f;
+    }
+
+    public void EndLevel(int playerToDrop)
+    {
+        if(playerToDrop != 4)
+            dropedPlayers.Add(playerToDrop);
+
+        gameStat.OnExitParty();
     }
 }

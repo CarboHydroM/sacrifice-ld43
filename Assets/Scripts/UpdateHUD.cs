@@ -21,12 +21,15 @@ public class UpdateHUD : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         GameObject partyObject = GameObject.FindGameObjectWithTag("Party");
-        party = partyObject.GetComponent<PartyStat>();
-        player1Score.GetComponent<Text>().text = party.score[0].ToString();
-        player2Score.GetComponent<Text>().text = party.score[1].ToString();
-        player3Score.GetComponent<Text>().text = party.score[2].ToString();
-        player4Score.GetComponent<Text>().text = party.score[3].ToString();
-        altitude.GetComponent<Text>().text = party.altitude.ToString() + "m";
-        speed.GetComponent<Text>().text = party.nacelleSpeed.ToString() + "m/s";
+        if (partyObject)
+        {
+            party = partyObject.GetComponent<PartyStat>();
+            player1Score.GetComponent<Text>().text = party.score[0].ToString();
+            player2Score.GetComponent<Text>().text = party.score[1].ToString();
+            player3Score.GetComponent<Text>().text = party.score[2].ToString();
+            player4Score.GetComponent<Text>().text = party.score[3].ToString();
+            altitude.GetComponent<Text>().text = party.altitude.ToString() + "m";
+            speed.GetComponent<Text>().text = party.nacelleSpeed.ToString() + "m/s";
+        }
     }
 }
