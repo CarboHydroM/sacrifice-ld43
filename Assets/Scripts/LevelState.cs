@@ -37,11 +37,17 @@ public class LevelState : MonoBehaviour {
         }
         foreach (GameObject p in m_players)
         {
-            if(party.droppedPlayers.Contains(p.GetComponent<InputReceiver>().playerIndex))
-                p.SetActive(false);
+            Debug.Assert(party);
+            //Debug.Assert(p);
+            if (p)
+            {
+                Debug.Assert(p.GetComponent<InputReceiver>());
+                if (party.droppedPlayers.Contains(p.GetComponent<InputReceiver>().playerIndex))
+                    p.SetActive(false);
+            }
         }
 
-        foreach (int playerIndex in party.dropedPlayers)
+        foreach (int playerIndex in party.droppedPlayers)
         {
             if(monsterPlayers[playerIndex] == null)
             {

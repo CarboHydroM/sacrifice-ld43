@@ -58,7 +58,7 @@ public class DropPlayerSelector : MonoBehaviour {
 
         foreach (var text in playersText.Select((value, i) => new { i, value }))
         {
-            if (party.dropedPlayers.Contains(text.i))
+            if (party.droppedPlayers.Contains(text.i))
                 text.value.SetActive(false);
         }
 
@@ -66,7 +66,7 @@ public class DropPlayerSelector : MonoBehaviour {
         int playerIndex = 0;
         foreach (var score in party.score.Select((value, i) => new { i, value }))
         {
-            if(score.value < minScore && !party.dropedPlayers.Contains(score.i))
+            if(score.value < minScore && !party.droppedPlayers.Contains(score.i))
             {
                 minScore = score.value;
                 playerIndex = score.i;
