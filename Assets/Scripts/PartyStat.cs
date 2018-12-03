@@ -15,7 +15,7 @@ public class PartyStat : MonoBehaviour {
     public float nacelleSpeed = 0f;
     public GameState gameStat;
 
-    List<float> dropedPlayers = new List<float>();
+    public HashSet<float> dropedPlayers = new HashSet<float>();
 
     private int m_currentLevelIdx = 0;
     AsyncOperation loader;
@@ -46,7 +46,6 @@ public class PartyStat : MonoBehaviour {
         if (loader.isDone == false)
             return;
         Scene scene = SceneManager.GetSceneByName(loadedSceneName);
-        //scene.SetA
         SceneManager.SetActiveScene(scene);
 
         float speedFactor = 0.3f;

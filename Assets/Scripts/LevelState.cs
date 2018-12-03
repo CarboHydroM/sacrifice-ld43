@@ -35,6 +35,13 @@ public class LevelState : MonoBehaviour {
             // End level
             //endGameCanvas.SetActive(true);
         }
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players)
+        {
+            if(party.dropedPlayers.Contains(p.GetComponent<InputReceiver>().playerIndex))
+                Destroy(p);
+        }
     }
 
     private void OnDestroy()
