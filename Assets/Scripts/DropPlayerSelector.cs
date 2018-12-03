@@ -56,11 +56,17 @@ public class DropPlayerSelector : MonoBehaviour {
         GameObject partyObject = GameObject.FindGameObjectWithTag("Party");
         PartyStat party = partyObject.GetComponent<PartyStat>();
 
+        foreach (var text in playersText.Select((value, i) => new { i, value }))
+        {
+            if (party.dropedPlayers.Contains(text.i))
+                text.value.SetActive(false);
+        }
+
         int minScore = int.MaxValue;
         int playerIndex = 0;
         foreach (var score in party.score.Select((value, i) => new { i, value }))
         {
-            if(score.value < minScore)
+            if(score.value < minScore && !party.dropedPlayers.Contains(score.i))
             {
                 minScore = score.value;
                 playerIndex = score.i;
