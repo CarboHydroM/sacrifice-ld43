@@ -12,6 +12,7 @@ TagManager:
   - Party
   - Game
   - AmmoCrate
+  - DontUnloadArea
   layers:
   - Default
   - TransparentFX

@@ -7,40 +7,65 @@ public class LevelState : MonoBehaviour {
     public float distanceToReach = 20f;
     public string enemieScene;
     public string backgroundScene;
+    public GameObject monsterPlayerPrefab;
+
+    public GameObject[] monsterPlayers = new GameObject[4];
+
+    GameObject[] m_players = new GameObject[4];
 
     public GameObject endGameCanvas;
 
-    AsyncOperation loadPlayers;
-
-    // Use this for initialization
     void Start () {
         SceneManager.LoadSceneAsync("Scenes/" + enemieScene, LoadSceneMode.Additive);
         SceneManager.LoadSceneAsync("Scenes/" + backgroundScene, LoadSceneMode.Additive);
-        loadPlayers = SceneManager.LoadSceneAsync("Scenes/Players", LoadSceneMode.Additive);
-        // endGameCanvas.SetActive(false);
+        SceneManager.LoadSceneAsync("Scenes/Players", LoadSceneMode.Additive);
     }
 
-    // Update is called once per frame
     void Update () {
-        //if (loadPlayers.isDone == false)
-        //    return;
-        //SceneManager.SetActiveScene(SceneManager.GetSceneByName("Players"));
-
         GameObject partyObject = GameObject.FindGameObjectWithTag("Party");
         PartyStat party = partyObject.GetComponent<PartyStat>();
         if(party.altitude >= distanceToReach)
         {
             party.EndLevelReached();
             distanceToReach = float.MaxValue;
-            // End level
-            //endGameCanvas.SetActive(true);
         }
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject p in players)
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject p in players)
+                m_players[p.GetComponent<InputReceiver>().playerIndex] = p;
+        }
+        foreach (GameObject p in m_players)
         {
             if(party.droppedPlayers.Contains(p.GetComponent<InputReceiver>().playerIndex))
-                Destroy(p);
+                p.SetActive(false);
+        }
+
+        foreach (int playerIndex in party.dropedPlayers)
+        {
+            if(monsterPlayers[playerIndex] == null)
+            {
+                float spawnProp = Random.Range(0f, 1);
+                if (spawnProp < Time.deltaTime)
+                {
+                    BoxCollider2D spawnCollider = gameObject.GetComponent<BoxCollider2D>();
+                    float x = Random.Range(-spawnCollider.size.x / 2f, spawnCollider.size.x / 2f);
+                    float y = Random.Range(-spawnCollider.size.y / 2f, spawnCollider.size.y / 2f);
+                    Vector3 pos = gameObject.transform.position + new Vector3(x, y, 0);
+                    GameObject newMonster = Instantiate(monsterPlayerPrefab, pos, Quaternion.identity);
+                    MonsterController ai = newMonster.GetComponent<MonsterController>();
+
+                    // Debug.Log("Spawn ghost " + playerIndex.ToString());
+
+                    GameObject playerObj = m_players[playerIndex];
+                    InputReceiver player = playerObj.GetComponent<InputReceiver>();
+                    MonsterInput mi = newMonster.GetComponent<MonsterInput>();
+                    mi.m_moveXAxis = player.m_moveXAxis;
+                    mi.m_moveYAxis = player.m_moveYAxis;
+                    mi.m_fireXAxis = player.m_fireXAxis;
+                    mi.m_fireYAxis = player.m_fireYAxis;
+                }
+            }
         }
     }
 

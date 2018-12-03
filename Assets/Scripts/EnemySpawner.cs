@@ -26,8 +26,6 @@ public class EnemySpawner : MonoBehaviour {
             float y = Random.Range(-spawnCollider.size.y / 2f, spawnCollider.size.y / 2f);
             Vector3 pos = gameObject.transform.position + new Vector3(x, y, 0);
             GameObject newMonster = Instantiate(monster, pos, Quaternion.identity);
-            MonsterController ai = newMonster.GetComponent<MonsterController>();
-            ai.unloadCollider = unloadCollider;
         }
     }
 }

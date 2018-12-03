@@ -7,7 +7,6 @@ public class MonsterController : MonoBehaviour {
     public Vector2 moveDir;
     public float speed = 1f;
     public int scoreBounty = 100;
-    public BoxCollider2D unloadCollider;
     public GameObject explosionPrefab;
     public GameObject ammoCratePrefab;
     private AudioSource audioSource;
@@ -33,7 +32,12 @@ public class MonsterController : MonoBehaviour {
 
         if (Time.fixedTime - spawnTime > 1f)
         {
-            if (unloadCollider.IsTouching(gameObject.GetComponent<Collider2D>()) == false)
+            BoxCollider2D unloadCollider = 
+                GameObject.FindGameObjectWithTag("DontUnloadArea").GetComponent<BoxCollider2D>();
+
+            Vector3 p = gameObject.GetComponent<Transform>().position;
+            //if (unloadCollider.IsTouching(gameObject.GetComponent<Collider2D>()) == false)
+            if(p.x < -40f || p.x > 40f || p.y < -10f || p.y > 40f)
                 Destroy(gameObject);
         }
     }
@@ -74,6 +78,7 @@ public class MonsterController : MonoBehaviour {
             {
                 Instantiate(ammoCratePrefab, gameObject.transform.position, Quaternion.identity);
             }
+
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
