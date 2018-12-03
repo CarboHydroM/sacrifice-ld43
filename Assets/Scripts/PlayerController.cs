@@ -97,6 +97,8 @@ public class PlayerController : MonoBehaviour
         {
             m_partyStat.ammoStock += crate.ammoBonus;
             m_partyStat.score[playerIndex] += crate.scoreBonus;
+            AudioSource asrc = gameObject.GetComponent<AudioSource>();
+            asrc.Play();
             Destroy(crate.gameObject);
         }
     }
