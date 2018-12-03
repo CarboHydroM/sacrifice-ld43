@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour {
     public GameObject mainMenuCanvas;
     public GameObject ingameCanvas;
     public GameObject inGameMenuCanvas;
+    public GameObject endGameCanvas;
     public GameObject partyPrefab;
 
     PartyStat partyInstance;
@@ -32,21 +33,26 @@ public class GameState : MonoBehaviour {
 
     public void OnQuit()
     {
+        Debug.Log("OnQuit");
         Application.Quit();
     }
 
     public void OnStartParty()
     {
+        Debug.Log("OnStartParty");
+
         mainMenuCanvas.SetActive(false);
         ingameCanvas.SetActive(true);
         partyInstance = Instantiate(partyPrefab).GetComponent<PartyStat>();
         partyInstance.gameStat = this;
         partyInstance.inGameMenuCanvas = inGameMenuCanvas;
+        partyInstance.endGameCanvas = endGameCanvas;
         //m_state = State.MainMenu;
     }
 
     public void OnExitParty()
     {
+        Debug.Log("OnExitParty");
         mainMenuCanvas.SetActive(true);
         ingameCanvas.SetActive(false);
         partyInstance.OnExitParty();
@@ -55,6 +61,7 @@ public class GameState : MonoBehaviour {
 
     public void OnLevelResume()
     {
+        Debug.Log("OnLevelResume");
         partyInstance.OnLevelResume();
     }
 

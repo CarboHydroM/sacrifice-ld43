@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PartyStat : MonoBehaviour {
     public GameObject inGameMenuCanvas;
+    public GameObject endGameCanvas;
 
     public int[] score = { 0, 0, 0, 0 };
     public float nacelleWeight = 5f;
@@ -17,7 +18,7 @@ public class PartyStat : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        SceneManager.LoadScene("Scenes/Level1", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Scenes/Level1", LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
@@ -34,12 +35,14 @@ public class PartyStat : MonoBehaviour {
 
     public void OnLevelResume()
     {
+        Debug.Log("OnLevelResume");
         inGameMenuCanvas.SetActive(false);
         Time.timeScale = 1f;
     }
 
     public void OnExitParty()
     {
+        Debug.Log("OnExitParty");
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game"));
         inGameMenuCanvas.SetActive(false);
         Destroy(gameObject);
@@ -47,9 +50,16 @@ public class PartyStat : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
-    public void EndLevel(int playerToDrop)
+    public void EndLevelReached()  // Sacrifice has to be choose
     {
-        if(playerToDrop != 4)
+        Debug.Log("EndLevelReached");
+        endGameCanvas.SetActive(true);
+    }
+
+    public void EndLevel(int playerToDrop)  // Sacrifice has been choosen
+    {
+        Debug.Log("EndLevel");
+        if (playerToDrop != 4)
             dropedPlayers.Add(playerToDrop);
 
         gameStat.OnExitParty();

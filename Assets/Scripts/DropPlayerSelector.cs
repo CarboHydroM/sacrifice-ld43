@@ -13,7 +13,6 @@ public class DropPlayerSelector : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        countDownStart = Time.realtimeSinceStartup;
     }
 
     void OnDestroy()
@@ -22,6 +21,7 @@ public class DropPlayerSelector : MonoBehaviour {
 
     private void OnEnable()
     {
+        countDownStart = Time.realtimeSinceStartup;
         Time.timeScale = 0f;
     }
 
@@ -113,7 +113,8 @@ public class DropPlayerSelector : MonoBehaviour {
 
         if (timeLeft < 0f)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             party.EndLevel(playerIndex);
         }
     }

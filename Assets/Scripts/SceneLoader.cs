@@ -13,7 +13,8 @@ public class SceneLoader : MonoBehaviour {
         SceneManager.LoadScene("Scenes/background", LoadSceneMode.Additive);
         SceneManager.LoadScene("Scenes/Players", LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level1"));
-        endGameCanvas.SetActive(false);
+        
+        // endGameCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,8 +23,9 @@ public class SceneLoader : MonoBehaviour {
         PartyStat party = partyObject.GetComponent<PartyStat>();
         if(party.altitude >= distanceToReach)
         {
+            party.EndLevelReached();
             // End level
-            endGameCanvas.SetActive(true);
+            //endGameCanvas.SetActive(true);
         }
     }
 

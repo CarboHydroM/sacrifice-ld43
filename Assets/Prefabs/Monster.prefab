@@ -209,8 +209,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDir: {x: 0, y: 0}
   speed: 0.002
-  unloadColider: {fileID: 0}
+  unloadCollider: {fileID: 0}
   explosionPrefab: {fileID: 1680714478733238, guid: b3c0257391fec8b42a663aceb7e5b34c,
+    type: 2}
+  ammoCratePrefab: {fileID: 1394874593926356, guid: 29e06120101214f10be95467aeadcc86,
     type: 2}
 --- !u!212 &212083254387545662
 SpriteRenderer:
