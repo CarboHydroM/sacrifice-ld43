@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameState : MonoBehaviour {
+public class GameState : MonoBehaviour
+{
 
     public GameObject mainMenuCanvas;
     public GameObject ingameCanvas;
@@ -11,6 +12,8 @@ public class GameState : MonoBehaviour {
     public GameObject endGameCanvas;
     public GameObject partyPrefab;
     public GameObject gameOverCanvas;
+
+    public bool[] playerAreIA = { false, false, false, false };
 
     PartyStat partyInstance;
 
@@ -23,13 +26,15 @@ public class GameState : MonoBehaviour {
     State m_state = State.MainMenu;*/
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         mainMenuCanvas.SetActive(true);
         ingameCanvas.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
     }
 
     public void OnQuit()
@@ -71,4 +76,10 @@ public class GameState : MonoBehaviour {
         partyInstance.OnLevelResume();
     }
 
+    public void OnPlayer2_IsIA()
+    {
+        playerAreIA[1] = !playerAreIA[1];
+    }
+    public void OnPlayer3_IsIA() { playerAreIA[2] = !playerAreIA[2]; }
+    public void OnPlayer4_IsIA() { playerAreIA[3] = !playerAreIA[3]; }
 }

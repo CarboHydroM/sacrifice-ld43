@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 114557182671299130}
   - component: {fileID: 61408419212646148}
   - component: {fileID: 50938472392382018}
+  - component: {fileID: 114644729985097524}
+  - component: {fileID: 114097679973424068}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -88,6 +90,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &114097679973424068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1110691739989752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ce664939fac2349886988d101923a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIndex: 666
+  m_firingCycle: 0.1
+  m_bulletsPerShot: 1
+  m_bulletDelay: 0.05
+  m_bulletPrefab: {fileID: 0}
+  m_nacelle: {fileID: 0}
+  m_speed: 10
 --- !u!114 &114557182671299130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,17 +119,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3882bac76032c4899b550c6b6f9a76f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIndex: 666
-  m_firingCycle: 0.1
-  m_bulletsPerShot: 1
-  m_bulletDelay: 0.05
-  m_bulletPrefab: {fileID: 0}
-  m_nacelle: {fileID: 0}
-  m_speed: 10
   m_moveXAxis: 
   m_moveYAxis: 
   m_fireXAxis: 
   m_fireYAxis: 
+--- !u!114 &114644729985097524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1110691739989752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886a29cc44a3ad54596221b07805c4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212769815655541838
 SpriteRenderer:
   m_ObjectHideFlags: 1

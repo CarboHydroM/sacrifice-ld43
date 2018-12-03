@@ -15,13 +15,34 @@ public class LevelState : MonoBehaviour {
 
     public GameObject endGameCanvas;
 
+    AsyncOperation loadPlayers;
     void Start () {
         SceneManager.LoadSceneAsync("Scenes/" + enemieScene, LoadSceneMode.Additive);
         SceneManager.LoadSceneAsync("Scenes/" + backgroundScene, LoadSceneMode.Additive);
-        SceneManager.LoadSceneAsync("Scenes/Players", LoadSceneMode.Additive);
+        loadPlayers = SceneManager.LoadSceneAsync("Scenes/Players", LoadSceneMode.Additive);
     }
 
+    bool firstUpdate = true;
     void Update () {
+        if (firstUpdate)
+        {
+            if (loadPlayers.isDone == false)
+                return;
+            firstUpdate = false;
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject p in players)
+                m_players[p.GetComponent<PlayerController>().playerIndex] = p;
+
+            GameObject gameObject = GameObject.FindGameObjectWithTag("Game");
+            GameState game = gameObject.GetComponent<GameState>();
+            for (int i = 0; i < 4; ++i)
+            {
+                if (game.playerAreIA[i])
+                    m_players[i].GetComponent<PlayerInput>().enabled = false;
+                else
+                    m_players[i].GetComponent<PlayerIA>().enabled = false;
+            }
+        }
         GameObject partyObject = GameObject.FindGameObjectWithTag("Party");
         PartyStat party = partyObject.GetComponent<PartyStat>();
         if(party.altitude >= distanceToReach)
@@ -30,19 +51,14 @@ public class LevelState : MonoBehaviour {
             distanceToReach = float.MaxValue;
         }
 
-        {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject p in players)
-                m_players[p.GetComponent<InputReceiver>().playerIndex] = p;
-        }
         foreach (GameObject p in m_players)
         {
             Debug.Assert(party);
             //Debug.Assert(p);
             if (p)
             {
-                Debug.Assert(p.GetComponent<InputReceiver>());
-                if (party.droppedPlayers.Contains(p.GetComponent<InputReceiver>().playerIndex))
+                Debug.Assert(p.GetComponent<PlayerController>());
+                if (party.droppedPlayers.Contains(p.GetComponent<PlayerController>().playerIndex))
                     p.SetActive(false);
             }
         }
@@ -64,7 +80,7 @@ public class LevelState : MonoBehaviour {
                     // Debug.Log("Spawn ghost " + playerIndex.ToString());
 
                     GameObject playerObj = m_players[playerIndex];
-                    InputReceiver player = playerObj.GetComponent<InputReceiver>();
+                    PlayerInput player = playerObj.GetComponent<PlayerInput>();
                     MonsterInput mi = newMonster.GetComponent<MonsterInput>();
                     mi.m_moveXAxis = player.m_moveXAxis;
                     mi.m_moveYAxis = player.m_moveYAxis;

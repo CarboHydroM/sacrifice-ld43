@@ -44,6 +44,7 @@ public class PartyStat : MonoBehaviour {
 
         loader = SceneManager.LoadSceneAsync("Scenes/" + loadedSceneName, LoadSceneMode.Additive);
         //loader.allowSceneActivation = false;
+        firstUpdateInLevel = true;
     }
 
     // Use this for initialization
@@ -51,17 +52,22 @@ public class PartyStat : MonoBehaviour {
     }
 
     // Update is called once per frame
+    bool firstUpdateInLevel = true;
     void Update () {
         if (loader.isDone == false)
             return;
-        Scene scene = SceneManager.GetSceneByName(loadedSceneName);
-        SceneManager.SetActiveScene(scene);
+        if (firstUpdateInLevel)
+        {
+            firstUpdateInLevel = false;
+            Scene scene = SceneManager.GetSceneByName(loadedSceneName);
+            SceneManager.SetActiveScene(scene);
+        }
 
         float speedFactor = 0.3f;
         float totalWeight = nacelleWeight + (bulletWeight * ammoStock) -
                             (playerWeight * droppedPlayers.Count);
-        nacelleSpeed = (nacellePower - totalWeight) * speedFactor * Time.deltaTime;
-        altitude += nacelleSpeed;
+        nacelleSpeed = (nacellePower - totalWeight) * speedFactor;
+        altitude += nacelleSpeed * Time.deltaTime;
 
         if (Input.GetButton("Menu"))
         {

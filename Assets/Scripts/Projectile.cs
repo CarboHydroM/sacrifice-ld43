@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour {
         {
             GameObject[] query = GameObject.FindGameObjectsWithTag("Party");
             PartyStat partyStat = query[0].GetComponent<PartyStat>();
-            InputReceiver player = launcher.GetComponent<InputReceiver>();
+            PlayerController player = launcher.GetComponent<PlayerController>();
             partyStat.wastedAmmo[player.playerIndex]++;
             Destroy(gameObject);
         }

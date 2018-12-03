@@ -67,7 +67,7 @@ public class MonsterController : MonoBehaviour {
         {
             audioSource.Play();
             GameObject launcher = proj.launcher;
-            InputReceiver inputRceiver = launcher.GetComponent<InputReceiver>();
+            PlayerController inputRceiver = launcher.GetComponent<PlayerController>();
             if(inputRceiver)  // Fired by a player
             {
                 int playerIndex = inputRceiver.playerIndex;
