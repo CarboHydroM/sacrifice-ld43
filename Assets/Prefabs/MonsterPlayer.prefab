@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61719412867516058}
   - component: {fileID: 50354738653032354}
   - component: {fileID: 82566965917396866}
+  - component: {fileID: 114961454261889558}
   m_Layer: 0
   m_Name: MonsterPlayer
   m_TagString: Enemy
@@ -203,6 +204,7 @@ MonoBehaviour:
     type: 2}
   ammoCratePrefab: {fileID: 1394874593926356, guid: 29e06120101214f10be95467aeadcc86,
     type: 2}
+  crateProbaRate: 0.2
 --- !u!114 &114683513016468714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,6 +227,17 @@ MonoBehaviour:
   m_moveYAxis: 
   m_fireXAxis: 
   m_fireYAxis: 
+--- !u!114 &114961454261889558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966645853560210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b2166b659e71a40b9d46578dbd98a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212083254387545662
 SpriteRenderer:
   m_ObjectHideFlags: 1
