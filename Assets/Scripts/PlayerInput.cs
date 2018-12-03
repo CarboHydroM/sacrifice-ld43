@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour {
 		float iy = Input.GetAxis(m_moveYAxis);
 		float sx = Input.GetAxis(m_fireXAxis);
 		float sy = Input.GetAxis(m_fireYAxis);
+        bool megaFire = Input.GetButtonDown("BigFire");
 
         //if (ix * ix + iy * iy < 0.1 && sx * sx + sy * sy < 0.1)
         //    gameObject.GetComponent<PlayerIA>().enabled = true;
@@ -26,7 +27,7 @@ public class PlayerInput : MonoBehaviour {
         {
             //gameObject.GetComponent<PlayerIA>().enabled = false;
             PlayerController player = gameObject.GetComponent<PlayerController>();
-            player.SetInputs(ix, iy, sx, sy);
+            player.SetInputs(ix, iy, sx, sy, megaFire);
         }
     }
 }

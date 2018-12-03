@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float m_bulletDelay = 0.05f;
     public GameObject m_bulletPrefab;
     public GameObject m_nacelle;
+    public float m_bigBulletSize = 12f;
+    public int m_bigBulletPrise = 10;
     private PartyStat m_partyStat;
     public float m_speed = 10f;
 
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void SetInputs(float ix, float iy, float sx, float sy)
+    public void SetInputs(float ix, float iy, float sx, float sy, bool megaFire)
     {
         Vector2 impulse = new Vector2(ix, iy);
         Vector2 firingDirection = new Vector2(sx, sy);
@@ -47,6 +49,19 @@ public class PlayerController : MonoBehaviour
             t.position = new Vector3(nacelleBounds.min.x + 1f, t.position.y);
         if (t.position.x > nacelleBounds.max.x - 1f)
             t.position = new Vector3(nacelleBounds.max.x - 1f, t.position.y);
+
+        if (megaFire && m_partyStat.ammoStock >= m_bigBulletPrise)
+        {
+            GameObject bObject = Instantiate(m_bulletPrefab, t.position, Quaternion.identity);
+            Projectile bullet = bObject.GetComponent(typeof(Projectile)) as Projectile;
+            bullet.Shoot(firingDirection);
+            bullet.launcher = gameObject;
+            m_bulletCount++;
+            m_partyStat.ammoConsumption[playerIndex]++;
+            bObject.transform.localScale = new Vector3(m_bigBulletSize, m_bigBulletSize, m_bigBulletSize);
+            m_partyStat.ammoStock -= m_bigBulletPrise;
+            m_partyStat.ammoConsumption[playerIndex] += m_bigBulletPrise;
+        }
 
         if ((firingDirection.magnitude > 0f) && (m_partyStat.ammoStock > 0))
         {
