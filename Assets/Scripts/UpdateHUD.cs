@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UpdateHUD : MonoBehaviour {
 
+    public GameObject ammoStock;
     public GameObject player1Score;
     public GameObject player2Score;
     public GameObject player3Score;
@@ -24,6 +25,7 @@ public class UpdateHUD : MonoBehaviour {
         if (partyObject)
         {
             party = partyObject.GetComponent<PartyStat>();
+            ammoStock.GetComponent<Text>().text = party.ammoStock.ToString();
             player1Score.GetComponent<Text>().text = party.score[0].ToString();
             player2Score.GetComponent<Text>().text = party.score[1].ToString();
             player3Score.GetComponent<Text>().text = party.score[2].ToString();

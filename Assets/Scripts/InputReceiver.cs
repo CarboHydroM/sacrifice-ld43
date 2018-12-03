@@ -13,6 +13,7 @@ public class InputReceiver : MonoBehaviour {
     public float m_bulletDelay = 0.05f;
     public GameObject m_bulletPrefab;
     public GameObject m_nacelle;
+    private PartyStat m_partyStat;
     public float m_speed = 10f;
     public string m_moveXAxis;
     public string m_moveYAxis;
@@ -24,7 +25,10 @@ public class InputReceiver : MonoBehaviour {
 		m_firingClock = 0f;
         m_bulletClock = 0f;
         m_bulletCount = 0;
-	}
+
+        GameObject[] query = GameObject.FindGameObjectsWithTag("Party");
+        m_partyStat = query[0].GetComponent<PartyStat>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,7 +54,7 @@ public class InputReceiver : MonoBehaviour {
         if (t.position.x > nacelleBounds.max.x - 1f)
             t.position = new Vector3(nacelleBounds.max.x - 1f, t.position.y);
 
-        if (firingDirection.magnitude > 0f)
+        if ((firingDirection.magnitude > 0f) && (m_partyStat.ammoStock > 0))
         {
             firingDirection.Normalize();
 
@@ -76,6 +80,8 @@ public class InputReceiver : MonoBehaviour {
                             bullet.Shoot(firingDirection);
                             bullet.launcher = gameObject;
                             m_bulletCount++;
+                            m_partyStat.ammoConsumption[playerIndex]++;
+                            m_partyStat.ammoStock--;
                         }
                         m_bulletClock += dt;
                     }
@@ -95,9 +101,7 @@ public class InputReceiver : MonoBehaviour {
         AmmoCrateController crate = other.gameObject.GetComponent<AmmoCrateController>();
         if (crate)
         {
-            GameObject[] query = GameObject.FindGameObjectsWithTag("Party");
-            PartyStat partyStat = query[0].GetComponent<PartyStat>();
-            partyStat.score[playerIndex] += crate.ammoBonus;
+            m_partyStat.ammoStock += crate.ammoBonus;
             Destroy(crate.gameObject);
         }
     }

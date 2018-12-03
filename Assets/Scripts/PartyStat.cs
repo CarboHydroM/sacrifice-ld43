@@ -9,6 +9,8 @@ public class PartyStat : MonoBehaviour {
     public GameObject endGameCanvas;
 
     public int[] score = { 0, 0, 0, 0 };
+    public int[] ammoConsumption = { 0, 0, 0, 0 };
+    public int ammoStock = 4000;
     public float nacelleWeight = 5f;
     public float altitude = 0f;
     public float nacellePower = 10f;
