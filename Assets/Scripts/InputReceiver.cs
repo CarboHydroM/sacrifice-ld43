@@ -89,4 +89,16 @@ public class InputReceiver : MonoBehaviour {
             m_bulletCount = 0;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        AmmoCrateController crate = other.gameObject.GetComponent<AmmoCrateController>();
+        if (crate)
+        {
+            GameObject[] query = GameObject.FindGameObjectsWithTag("Party");
+            PartyStat partyStat = query[0].GetComponent<PartyStat>();
+            partyStat.score[playerIndex] += crate.ammoBonus;
+            Destroy(crate.gameObject);
+        }
+    }
 }

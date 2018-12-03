@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoCrateController : MonoBehaviour {
-
+public class AmmoCrateController : MonoBehaviour
+{
     private float m_clock;
     private float m_angle = 0f;
     private Transform m_transform;
     public float m_fallSpeed = 5f;
+    public int ammoBonus = 10;
 
     public bool GoneBeyond(float xmax, float ymax)
     {
@@ -23,13 +24,15 @@ public class AmmoCrateController : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         m_clock = 0f;
         m_transform = gameObject.GetComponent<Transform>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         float dt = Time.deltaTime;
         m_clock += dt;
         Vector2 move = new Vector2(0f, m_fallSpeed * dt);
@@ -46,5 +49,5 @@ public class AmmoCrateController : MonoBehaviour {
 
         if (GoneBeyond(90f, 50f))
             Destroy(gameObject);
-	}
+    }
 }
