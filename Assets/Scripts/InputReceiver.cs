@@ -102,6 +102,7 @@ public class InputReceiver : MonoBehaviour {
         if (crate)
         {
             m_partyStat.ammoStock += crate.ammoBonus;
+            m_partyStat.score[playerIndex] += crate.scoreBonus;
             Destroy(crate.gameObject);
         }
     }

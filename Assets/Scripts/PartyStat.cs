@@ -10,14 +10,18 @@ public class PartyStat : MonoBehaviour {
 
     public int[] score = { 0, 0, 0, 0 };
     public int[] ammoConsumption = { 0, 0, 0, 0 };
+    public int[] ennemyKills = { 0, 0, 0, 0 };
+    public int[] wastedAmmo = { 0, 0, 0, 0 };
     public int ammoStock = 4000;
     public float nacelleWeight = 5f;
+    public float bulletWeight = 0.0004f;
+    public float playerWeight = 0.25f;
     public float altitude = 0f;
     public float nacellePower = 10f;
     public float nacelleSpeed = 0f;
     public GameState gameStat;
 
-    public HashSet<float> dropedPlayers = new HashSet<float>();
+    public HashSet<int> droppedPlayers = new HashSet<int>();
 
     private int m_currentLevelIdx = 0;
     AsyncOperation loader;
@@ -51,7 +55,9 @@ public class PartyStat : MonoBehaviour {
         SceneManager.SetActiveScene(scene);
 
         float speedFactor = 0.3f;
-        nacelleSpeed = (nacellePower - nacelleWeight) * speedFactor * Time.deltaTime;
+        float totalWeight = nacelleWeight + (bulletWeight * ammoStock) -
+                            (playerWeight * droppedPlayers.Count);
+        nacelleSpeed = (nacellePower - totalWeight) * speedFactor * Time.deltaTime;
         altitude += nacelleSpeed;
 
         if (Input.GetButton("Menu"))
@@ -100,7 +106,7 @@ public class PartyStat : MonoBehaviour {
     {
         Debug.Log("EndLevel");
         if (playerToDrop != 4)
-            dropedPlayers.Add(playerToDrop);
+            droppedPlayers.Add(playerToDrop);
 
         UnloadLevel();
 

@@ -38,6 +38,12 @@ public class Projectile : MonoBehaviour {
 		m_transform.position += new Vector3(move.x, move.y);
 
 		if (GoneBeyond(90f, 50f))
-			Destroy(gameObject);
+        {
+            GameObject[] query = GameObject.FindGameObjectsWithTag("Party");
+            PartyStat partyStat = query[0].GetComponent<PartyStat>();
+            InputReceiver player = launcher.GetComponent<InputReceiver>();
+            partyStat.wastedAmmo[player.playerIndex]++;
+            Destroy(gameObject);
+        }
 	}
 }

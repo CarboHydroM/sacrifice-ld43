@@ -6,6 +6,7 @@ public class MonsterController : MonoBehaviour {
 
     public Vector2 moveDir;
     public float speed = 1f;
+    public int scoreBounty = 100;
     public BoxCollider2D unloadCollider;
     public GameObject explosionPrefab;
     public GameObject ammoCratePrefab;
@@ -65,7 +66,8 @@ public class MonsterController : MonoBehaviour {
                 int playerIndex = inputRceiver.playerIndex;
                 GameObject party = GameObject.FindGameObjectWithTag("Party");
                 PartyStat stat = party.GetComponent<PartyStat>();
-                stat.score[playerIndex] += 1;
+                stat.score[playerIndex] += scoreBounty;
+                stat.ennemyKills[playerIndex]++;
             }
             Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
             if (Random.Range(0f, 1f) <= 0.2f)

@@ -9,6 +9,7 @@ public class AmmoCrateController : MonoBehaviour
     private Transform m_transform;
     public float m_fallSpeed = 5f;
     public int ammoBonus = 100;
+    public int scoreBonus = 10;
 
     public bool GoneBeyond(float xmax, float ymax)
     {
