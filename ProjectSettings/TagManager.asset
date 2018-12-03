@@ -11,6 +11,7 @@ TagManager:
   - AllyBullet
   - Party
   - Game
+  - AmmoCrate
   layers:
   - Default
   - TransparentFX
