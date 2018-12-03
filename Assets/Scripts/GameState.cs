@@ -46,7 +46,9 @@ public class GameState : MonoBehaviour {
         partyInstance = Instantiate(partyPrefab).GetComponent<PartyStat>();
         partyInstance.gameStat = this;
         partyInstance.inGameMenuCanvas = inGameMenuCanvas;
+        partyInstance.inGameCanvas = ingameCanvas;
         partyInstance.endGameCanvas = endGameCanvas;
+        partyInstance.StartLevel(1);
         //m_state = State.MainMenu;
     }
 
@@ -56,6 +58,7 @@ public class GameState : MonoBehaviour {
         mainMenuCanvas.SetActive(true);
         ingameCanvas.SetActive(false);
         partyInstance.OnExitParty();
+        Destroy(partyInstance);
         //m_state = State.InGame;
     }
 

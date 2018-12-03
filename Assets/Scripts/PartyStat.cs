@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PartyStat : MonoBehaviour {
     public GameObject inGameMenuCanvas;
+    public GameObject inGameCanvas;
     public GameObject endGameCanvas;
 
     public int[] score = { 0, 0, 0, 0 };
@@ -16,14 +17,40 @@ public class PartyStat : MonoBehaviour {
 
     List<float> dropedPlayers = new List<float>();
 
+    private int m_currentLevelIdx = 0;
+    AsyncOperation loader;
+    string loadedSceneName;
+    public void StartLevel(int levelIdx)
+    {
+        m_currentLevelIdx = levelIdx;
+        if (m_currentLevelIdx == 5)
+        {
+            inGameCanvas.SetActive(false);
+            loadedSceneName = "End";
+        }
+        else
+        {
+            loadedSceneName = "Level" + levelIdx.ToString();
+        }
+
+        loader = SceneManager.LoadSceneAsync("Scenes/" + loadedSceneName, LoadSceneMode.Additive);
+        //loader.allowSceneActivation = false;
+    }
+
     // Use this for initialization
     void Start () {
-        SceneManager.LoadSceneAsync("Scenes/Level1", LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
     void Update () {
-        nacelleSpeed = ((nacellePower - nacelleWeight) / 10f) * Time.deltaTime;
+        if (loader.isDone == false)
+            return;
+        Scene scene = SceneManager.GetSceneByName(loadedSceneName);
+        //scene.SetA
+        SceneManager.SetActiveScene(scene);
+
+        float speedFactor = 0.3f;
+        nacelleSpeed = (nacellePower - nacelleWeight) * speedFactor * Time.deltaTime;
         altitude += nacelleSpeed;
 
         if (Input.GetButton("Menu"))
@@ -46,14 +73,26 @@ public class PartyStat : MonoBehaviour {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game"));
         inGameMenuCanvas.SetActive(false);
         Destroy(gameObject);
-        SceneManager.UnloadSceneAsync("Scenes/Level1");
+        //SceneManager.UnloadSceneAsync("Scenes/Level1");
+        UnloadLevel();
         Time.timeScale = 1f;
     }
 
     public void EndLevelReached()  // Sacrifice has to be choose
     {
         Debug.Log("EndLevelReached");
-        endGameCanvas.SetActive(true);
+        if(m_currentLevelIdx < 4)
+            endGameCanvas.SetActive(true);
+        else
+            EndLevel(4);
+    }
+
+    void UnloadLevel()
+    {
+        if (m_currentLevelIdx == 5)
+            SceneManager.UnloadSceneAsync("Scenes/End");
+        else
+            SceneManager.UnloadSceneAsync("Scenes/Level" + m_currentLevelIdx.ToString());
     }
 
     public void EndLevel(int playerToDrop)  // Sacrifice has been choosen
@@ -62,6 +101,8 @@ public class PartyStat : MonoBehaviour {
         if (playerToDrop != 4)
             dropedPlayers.Add(playerToDrop);
 
-        gameStat.OnExitParty();
+        UnloadLevel();
+
+        StartLevel(m_currentLevelIdx + 1);
     }
 }
