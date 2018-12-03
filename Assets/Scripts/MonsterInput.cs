@@ -35,11 +35,17 @@ public class MonsterInput : MonoBehaviour {
         float sx = Input.GetAxis(m_fireXAxis);
         float sy = Input.GetAxis(m_fireYAxis);
 
-        Vector2 impulse = new Vector2(ix, iy);
-        Vector2 firingDirection = new Vector2(sx, sy);
+        if (ix * ix + iy * iy < 0.1 && sx * sx + sy * sy < 0.1)
+            gameObject.GetComponent<MonsterAI>().enabled = true;
+        else
+        {
+            gameObject.GetComponent<MonsterAI>().enabled = false;
+            Vector2 impulse = new Vector2(ix, iy);
+            Vector2 firingDirection = new Vector2(sx, sy);
 
-        MonsterController monster =  gameObject.GetComponent<MonsterController>();
-        monster.MoveDir(impulse);
-        monster.FireDir(firingDirection);
+            MonsterController monster = gameObject.GetComponent<MonsterController>();
+            monster.MoveDir(impulse);
+            monster.FireDir(firingDirection);
+        }
     }
 }

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fallSpeed: 5
-  ammoBonus: 100
+  ammoBonus: 10
   scoreBonus: 10
 --- !u!212 &212002403144619670
 SpriteRenderer:

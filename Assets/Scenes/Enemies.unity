@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ef5dfdb75223842b39280c3e83e1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToSpawn: 1
+  timeToSpawn: 0.2
   monster: {fileID: 1966645853560210, guid: 22158d0a85a74c049818e4d35369e278, type: 2}
   unloadCollider: {fileID: 1242819901}
 --- !u!4 &1552533127

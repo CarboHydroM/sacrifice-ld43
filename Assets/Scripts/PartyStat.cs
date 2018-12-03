@@ -19,9 +19,18 @@ public class PartyStat : MonoBehaviour {
     public float altitude = 0f;
     public float nacellePower = 10f;
     public float nacelleSpeed = 0f;
+    public int balloonLifeStart = 100;
     public GameState gameStat;
-    public int balloonLife = 100;
     public GameObject gameOverCanvas;
+
+    int m_balloonLife;
+    public int balloonLife
+    {
+        get
+        {
+            return m_balloonLife;
+        }
+    }
 
     public HashSet<int> droppedPlayers = new HashSet<int>();
 
@@ -45,6 +54,7 @@ public class PartyStat : MonoBehaviour {
         loader = SceneManager.LoadSceneAsync("Scenes/" + loadedSceneName, LoadSceneMode.Additive);
         //loader.allowSceneActivation = false;
         firstUpdateInLevel = true;
+        m_balloonLife = balloonLifeStart;
     }
 
     // Use this for initialization
@@ -124,7 +134,7 @@ public class PartyStat : MonoBehaviour {
 
     public void HitBalloon(int value)
     {
-        balloonLife -= value;
+        m_balloonLife -= value;
         if (balloonLife <= 0)
         {
             Time.timeScale = 0f;

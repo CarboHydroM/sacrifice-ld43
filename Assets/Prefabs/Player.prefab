@@ -198,9 +198,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 666
-  m_firingCycle: 0.1
+  m_firingCycle: 0.2
   m_bulletsPerShot: 1
-  m_bulletDelay: 0.05
+  m_bulletDelay: 0.2
   m_bulletPrefab: {fileID: 0}
   m_nacelle: {fileID: 0}
   m_speed: 10

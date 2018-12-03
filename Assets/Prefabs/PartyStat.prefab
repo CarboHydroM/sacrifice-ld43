@@ -55,8 +55,16 @@ MonoBehaviour:
   inGameCanvas: {fileID: 0}
   endGameCanvas: {fileID: 0}
   score: 00000000000000000000000000000000
+  ammoConsumption: 00000000000000000000000000000000
+  ennemyKills: 00000000000000000000000000000000
+  wastedAmmo: 00000000000000000000000000000000
+  ammoStock: 100
   nacelleWeight: 5
+  bulletWeight: 0.01
+  playerWeight: 1
   altitude: 0
-  nacellePower: 10
+  nacellePower: 14
   nacelleSpeed: 0
+  balloonLifeStart: 10
   gameStat: {fileID: 0}
+  gameOverCanvas: {fileID: 0}

@@ -20,7 +20,13 @@ public class PlayerInput : MonoBehaviour {
 		float sx = Input.GetAxis(m_fireXAxis);
 		float sy = Input.GetAxis(m_fireYAxis);
 
-        PlayerController player = gameObject.GetComponent<PlayerController>();
-        player.SetInputs(ix, iy, sx, sy);
+        //if (ix * ix + iy * iy < 0.1 && sx * sx + sy * sy < 0.1)
+        //    gameObject.GetComponent<PlayerIA>().enabled = true;
+        //else
+        {
+            //gameObject.GetComponent<PlayerIA>().enabled = false;
+            PlayerController player = gameObject.GetComponent<PlayerController>();
+            player.SetInputs(ix, iy, sx, sy);
+        }
     }
 }

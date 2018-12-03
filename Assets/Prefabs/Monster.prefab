@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 82566965917396866}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,11 +209,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDir: {x: 0, y: 0}
   speed: 0.002
-  unloadCollider: {fileID: 0}
+  scoreBounty: 100
   explosionPrefab: {fileID: 1680714478733238, guid: b3c0257391fec8b42a663aceb7e5b34c,
     type: 2}
   ammoCratePrefab: {fileID: 1394874593926356, guid: 29e06120101214f10be95467aeadcc86,
     type: 2}
+  crateProbaRate: 0.5
 --- !u!212 &212083254387545662
 SpriteRenderer:
   m_ObjectHideFlags: 1

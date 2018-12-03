@@ -9,6 +9,7 @@ public class MonsterController : MonoBehaviour {
     public int scoreBounty = 100;
     public GameObject explosionPrefab;
     public GameObject ammoCratePrefab;
+    public float crateProbaRate = 0.2f;
     private AudioSource audioSource;
 
     float spawnTime;
@@ -75,7 +76,7 @@ public class MonsterController : MonoBehaviour {
                 party.ennemyKills[playerIndex]++;
             }
             Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
-            if (Random.Range(0f, 1f) <= 0.2f)
+            if (Random.Range(0f, 1f) <= crateProbaRate)
             {
                 Instantiate(ammoCratePrefab, gameObject.transform.position, Quaternion.identity);
             }
@@ -86,6 +87,7 @@ public class MonsterController : MonoBehaviour {
 
         if (other.gameObject.tag == "Nacelle")
         {
+            Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
             party.HitBalloon(1);
             Destroy(gameObject);
         }

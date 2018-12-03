@@ -18,7 +18,12 @@ public class EnemySpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(Time.fixedTime - lastSpawn > timeToSpawn)
+        float spawnPerSec = 1f / timeToSpawn;
+        float probaToSpawn = spawnPerSec * Time.deltaTime;
+
+        float proba = Random.Range(0f, 1f);
+        if(proba < probaToSpawn)
+        //if (Time.fixedTime - lastSpawn > timeToSpawn)
         {
             lastSpawn = Time.fixedTime;
             BoxCollider2D spawnCollider = gameObject.GetComponent<BoxCollider2D>();
