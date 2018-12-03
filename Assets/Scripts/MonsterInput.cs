@@ -5,9 +5,9 @@ using UnityEngine;
 public class MonsterInput : MonoBehaviour {
 
     public int playerIndex = 666;
-    private float m_firingClock;
-    private int m_bulletCount;
-    private float m_bulletClock;
+    //private float m_firingClock;
+    //private int m_bulletCount;
+    //private float m_bulletClock;
     public float m_firingCycle = 0.1f;
     public int m_bulletsPerShot = 1;
     public float m_bulletDelay = 0.05f;
@@ -22,9 +22,9 @@ public class MonsterInput : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        m_firingClock = 0f;
-        m_bulletClock = 0f;
-        m_bulletCount = 0;
+        //m_firingClock = 0f;
+        //m_bulletClock = 0f;
+        //m_bulletCount = 0;
     }
 
     // Update is called once per frame

@@ -20,6 +20,8 @@ public class PartyStat : MonoBehaviour {
     public float nacellePower = 10f;
     public float nacelleSpeed = 0f;
     public GameState gameStat;
+    public int balloonLife = 100;
+    public GameObject gameOverCanvas;
 
     public HashSet<int> droppedPlayers = new HashSet<int>();
 
@@ -28,6 +30,7 @@ public class PartyStat : MonoBehaviour {
     string loadedSceneName;
     public void StartLevel(int levelIdx)
     {
+        Time.timeScale = 1f;
         m_currentLevelIdx = levelIdx;
         if (m_currentLevelIdx == 5)
         {
@@ -111,5 +114,15 @@ public class PartyStat : MonoBehaviour {
         UnloadLevel();
 
         StartLevel(m_currentLevelIdx + 1);
+    }
+
+    public void HitBalloon(int value)
+    {
+        balloonLife -= value;
+        if (balloonLife <= 0)
+        {
+            Time.timeScale = 0f;
+            gameOverCanvas.SetActive(true);
+        }
     }
 }
