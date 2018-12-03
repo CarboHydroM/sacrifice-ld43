@@ -14,23 +14,27 @@ public class Scrolling : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	float factor = Random.Range(0f, speedFactor);
-	scrollingSpeed += factor;
-	Vector3 pos = transform.position;
-	pos.z += factor * 10.0f;
-	transform.position = pos;
+	    float factor = Random.Range(0f, speedFactor);
+	    scrollingSpeed += factor;
+	    Vector3 pos = transform.position;
+	    pos.z += factor * 10.0f;
+	    transform.position = pos;
 
-	float scale = 1.0f + factor * scaleFactor;
-	transform.localScale = new Vector3(scale, scale, scale);
+	    float scale = 1.0f + factor * scaleFactor;
+	    transform.localScale = new Vector3(scale, scale, scale);
     }
 	
     // Update is called once per frame
-    void Update () {		
-	transform.position -= Vector3.up * scrollingSpeed * Time.deltaTime;
+    void Update () {
+        GameObject[] query = GameObject.FindGameObjectsWithTag("Party");
+        PartyStat partyStat = query[0].GetComponent<PartyStat>();
+        float effectiveSpeed = scrollingSpeed +
+                                (partyStat.nacelleSpeed * speedFactor);
+	    transform.position -= Vector3.up * effectiveSpeed * Time.deltaTime;
 
-	// TODO Destroy the entity when it leave the screen
-	// if (transform.position.y > 0) {
-	//     Destroy(this);
-	// }
+	    // TODO Destroy the entity when it leave the screen
+	    // if (transform.position.y > 0) {
+	    //     Destroy(this);
+	    // }
     }
 }

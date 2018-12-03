@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PartyStat : MonoBehaviour {
+    private GameObject musicSys;
     public GameObject inGameMenuCanvas;
     public GameObject inGameCanvas;
     public GameObject endGameCanvas;
@@ -39,6 +40,9 @@ public class PartyStat : MonoBehaviour {
     string loadedSceneName;
     public void StartLevel(int levelIdx)
     {
+        musicSys = GameObject.FindGameObjectWithTag("Music");
+        Debug.Assert(musicSys);
+
         Time.timeScale = 1f;
         m_currentLevelIdx = levelIdx;
         if (m_currentLevelIdx == 5)
@@ -49,6 +53,8 @@ public class PartyStat : MonoBehaviour {
         else
         {
             loadedSceneName = "Level" + levelIdx.ToString();
+            MusicSystem ms = musicSys.GetComponent<MusicSystem>();
+            ms.PlayClip(m_currentLevelIdx);
         }
 
         loader = SceneManager.LoadSceneAsync("Scenes/" + loadedSceneName, LoadSceneMode.Additive);
@@ -102,13 +108,18 @@ public class PartyStat : MonoBehaviour {
         //SceneManager.UnloadSceneAsync("Scenes/Level1");
         UnloadLevel();
         Time.timeScale = 1f;
+        MusicSystem ms = musicSys.GetComponent<MusicSystem>();
+        ms.Stop();
     }
 
     public void EndLevelReached()  // Sacrifice has to be choose
     {
         Debug.Log("EndLevelReached");
-        if(m_currentLevelIdx < 4)
+        if(m_currentLevelIdx < 4) {
             endGameCanvas.SetActive(true);
+            MusicSystem ms = musicSys.GetComponent<MusicSystem>();
+            ms.PlayClip(0);
+        }
         else
             EndLevel(4);
     }

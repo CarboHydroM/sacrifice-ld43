@@ -13,6 +13,7 @@ TagManager:
   - Game
   - AmmoCrate
   - DontUnloadArea
+  - Music
   layers:
   - Default
   - TransparentFX
