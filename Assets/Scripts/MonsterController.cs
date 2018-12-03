@@ -32,8 +32,8 @@ public class MonsterController : MonoBehaviour {
 
         if (Time.fixedTime - spawnTime > 1f)
         {
-            BoxCollider2D unloadCollider = 
-                GameObject.FindGameObjectWithTag("DontUnloadArea").GetComponent<BoxCollider2D>();
+            //BoxCollider2D unloadCollider = 
+            //    GameObject.FindGameObjectWithTag("DontUnloadArea").GetComponent<BoxCollider2D>();
 
             Vector3 p = gameObject.GetComponent<Transform>().position;
             //if (unloadCollider.IsTouching(gameObject.GetComponent<Collider2D>()) == false)
@@ -59,6 +59,9 @@ public class MonsterController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        GameObject partyObj = GameObject.FindGameObjectWithTag("Party");
+        PartyStat party = partyObj.GetComponent<PartyStat>();
+
         Projectile proj = other.gameObject.GetComponent<Projectile>();
         if (proj)
         {
@@ -68,10 +71,8 @@ public class MonsterController : MonoBehaviour {
             if(inputRceiver)  // Fired by a player
             {
                 int playerIndex = inputRceiver.playerIndex;
-                GameObject party = GameObject.FindGameObjectWithTag("Party");
-                PartyStat stat = party.GetComponent<PartyStat>();
-                stat.score[playerIndex] += scoreBounty;
-                stat.ennemyKills[playerIndex]++;
+                party.score[playerIndex] += scoreBounty;
+                party.ennemyKills[playerIndex]++;
             }
             Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
             if (Random.Range(0f, 1f) <= 0.2f)
@@ -81,6 +82,12 @@ public class MonsterController : MonoBehaviour {
 
             Destroy(gameObject);
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Nacelle")
+        {
+            party.HitBalloon(1);
+            Destroy(gameObject);
         }
     }
 }

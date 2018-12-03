@@ -10,6 +10,7 @@ public class GameState : MonoBehaviour {
     public GameObject inGameMenuCanvas;
     public GameObject endGameCanvas;
     public GameObject partyPrefab;
+    public GameObject gameOverCanvas;
 
     PartyStat partyInstance;
 
@@ -48,12 +49,14 @@ public class GameState : MonoBehaviour {
         partyInstance.inGameMenuCanvas = inGameMenuCanvas;
         partyInstance.inGameCanvas = ingameCanvas;
         partyInstance.endGameCanvas = endGameCanvas;
+        partyInstance.gameOverCanvas = gameOverCanvas;
         partyInstance.StartLevel(1);
         //m_state = State.MainMenu;
     }
 
     public void OnExitParty()
     {
+        gameOverCanvas.SetActive(false);
         Debug.Log("OnExitParty");
         mainMenuCanvas.SetActive(true);
         ingameCanvas.SetActive(false);

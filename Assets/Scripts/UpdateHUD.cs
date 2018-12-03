@@ -12,6 +12,7 @@ public class UpdateHUD : MonoBehaviour {
     public GameObject player4Score;
     public GameObject altitude;
     public GameObject speed;
+    public GameObject balloonLife;
 
     PartyStat party;
 
@@ -32,6 +33,7 @@ public class UpdateHUD : MonoBehaviour {
             player4Score.GetComponent<Text>().text = party.score[3].ToString();
             altitude.GetComponent<Text>().text = party.altitude.ToString() + "m";
             speed.GetComponent<Text>().text = party.nacelleSpeed.ToString() + "m/s";
+            balloonLife.GetComponent<Text>().text = party.balloonLife.ToString();
         }
     }
 }
