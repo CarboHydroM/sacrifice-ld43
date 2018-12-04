@@ -48,10 +48,11 @@ public class PlayerController : MonoBehaviour
         Vector3 nacellePos = m_nacelle.transform.position;
         CompositeCollider2D nacelleCollider = m_nacelle.GetComponent<CompositeCollider2D>();
         Bounds nacelleBounds = nacelleCollider.bounds;
-        if (t.position.x < nacelleBounds.min.x + 1f)
-            t.position = new Vector3(nacelleBounds.min.x + 1f, t.position.y);
-        if (t.position.x > nacelleBounds.max.x - 1f)
-            t.position = new Vector3(nacelleBounds.max.x - 1f, t.position.y);
+        float border = 2.5f;
+        if (t.position.x < nacelleBounds.min.x + border)
+            t.position = new Vector3(nacelleBounds.min.x + border, t.position.y);
+        if (t.position.x > nacelleBounds.max.x - border)
+            t.position = new Vector3(nacelleBounds.max.x - border, t.position.y);
 
         if (megaFire && m_partyStat.ammoStock >= m_bigBulletPrise)
         {
