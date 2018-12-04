@@ -30,9 +30,12 @@ public class LevelState : MonoBehaviour {
         if (bgScnLoading.isDone && !bgIsSet)
         {
             GameObject gobj = GameObject.FindGameObjectWithTag("BG");
+            Debug.Assert(gobj);
             BackgroundScrolling bgs = gobj.GetComponent<BackgroundScrolling>();
+            Debug.Assert(bgs);
             gobj = GameObject.FindGameObjectWithTag("Party");
             PartyStat partyStat = gobj.GetComponent<PartyStat>();
+            Debug.Assert(partyStat);
             bgs.SetLevelBackground(partyStat.m_currentLevelIdx);
             bgIsSet = true;
         }
