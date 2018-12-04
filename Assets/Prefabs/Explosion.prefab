@@ -210,7 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  sound: {fileID: 0}
 --- !u!198 &198275347147606384
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -5955,8 +5954,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.016976064, b: 0, a: 1}
-        key1: {r: 1, g: 0.4189905, b: 0, a: 1}
+        key0: {r: 1, g: 0.36017132, b: 0, a: 1}
+        key1: {r: 0.9962778, g: 1, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

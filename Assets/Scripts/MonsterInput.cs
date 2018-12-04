@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class MonsterInput : MonoBehaviour {
 
+    public Sprite[] ghosts = new Sprite[4];
+
     public int playerIndex = 666;
     //private float m_firingClock;
     //private int m_bulletCount;
     //private float m_bulletClock;
-    public float m_firingCycle = 0.1f;
-    public int m_bulletsPerShot = 1;
-    public float m_bulletDelay = 0.05f;
-    public GameObject m_bulletPrefab;
-    public GameObject m_nacelle;
-    public float m_speed = 10f;
+    //public float m_firingCycle = 0.1f;
+    //public int m_bulletsPerShot = 1;
+    //public float m_bulletDelay = 0.05f;
+    //public GameObject m_bulletPrefab;
+    //public GameObject m_nacelle;
+    //public float m_speed = 10f;
     public string m_moveXAxis;
     public string m_moveYAxis;
     public string m_fireXAxis;
@@ -22,14 +24,17 @@ public class MonsterInput : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        //m_firingClock = 0f;
-        //m_bulletClock = 0f;
-        //m_bulletCount = 0;
+        SpriteRenderer str = gameObject.GetComponent<SpriteRenderer>();
+        if (playerIndex < ghosts.Length)
+            str.sprite = ghosts[playerIndex];
+        MonsterController monster = gameObject.GetComponent<MonsterController>();
+        //monster.speed = 10f;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         float ix = Input.GetAxis(m_moveXAxis);
         float iy = Input.GetAxis(m_moveYAxis);
         float sx = Input.GetAxis(m_fireXAxis);

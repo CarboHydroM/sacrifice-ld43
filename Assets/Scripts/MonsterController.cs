@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour {
 
     public Vector2 moveDir;
-    public float speed = 1f;
+    public float speed = 10f;
     public int scoreBounty = 100;
     public GameObject explosionPrefab;
     public GameObject ammoCratePrefab;
@@ -29,7 +29,7 @@ public class MonsterController : MonoBehaviour {
         quat.SetLookRotation(new Vector3(0f, 0f, 1f), moveDir3);
         gameObject.transform.rotation = quat;
 
-        gameObject.transform.position = gameObject.transform.position + moveDir3 * (speed / Time.deltaTime);
+        gameObject.transform.position = gameObject.transform.position + moveDir3 * (speed * Time.deltaTime);
 
         if (Time.fixedTime - spawnTime > 1f)
         {

@@ -75,6 +75,7 @@ public class LevelState : MonoBehaviour {
                     float y = Random.Range(-spawnCollider.size.y / 2f, spawnCollider.size.y / 2f);
                     Vector3 pos = gameObject.transform.position + new Vector3(x, y, 0);
                     GameObject newMonster = Instantiate(monsterPlayerPrefab, pos, Quaternion.identity);
+                    newMonster.GetComponent<MonsterInput>().playerIndex = playerIndex;
                     //MonsterController ai = newMonster.GetComponent<MonsterController>();
 
                     // Debug.Log("Spawn ghost " + playerIndex.ToString());

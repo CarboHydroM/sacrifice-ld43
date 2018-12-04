@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Sprite stop;
+    public Sprite walk1;
+    public Sprite walk2;
 
     public int playerIndex = 666;
     private float m_firingClock;
@@ -102,6 +105,18 @@ public class PlayerController : MonoBehaviour
         {
             m_firingClock = 0f;
             m_bulletCount = 0;
+        }
+
+        SpriteRenderer spr = gameObject.GetComponent<SpriteRenderer>();
+        if (Mathf.Abs(ix) < 0.1)
+            spr.sprite = stop;
+        else
+        {
+            if (((int)(Time.fixedTime * 4f) % 2) == 0)
+                spr.sprite = walk1;
+            else
+                spr.sprite = walk2;
+            spr.flipX = ix < 0f;
         }
     }
 

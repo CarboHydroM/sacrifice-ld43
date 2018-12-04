@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: 0, y: 0}
-  speed: 0.002
+  speed: 5
   scoreBounty: 100
   explosionPrefab: {fileID: 1680714478733238, guid: b3c0257391fec8b42a663aceb7e5b34c,
     type: 2}
