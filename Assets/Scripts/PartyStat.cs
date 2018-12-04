@@ -35,7 +35,7 @@ public class PartyStat : MonoBehaviour {
 
     public HashSet<int> droppedPlayers = new HashSet<int>();
 
-    private int m_currentLevelIdx = 0;
+    public int m_currentLevelIdx = 0;
     AsyncOperation loader;
     string loadedSceneName;
     public void StartLevel(int levelIdx)

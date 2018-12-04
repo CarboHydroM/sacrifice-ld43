@@ -10,6 +10,7 @@ public class MonsterController : MonoBehaviour {
     public GameObject explosionPrefab;
     public GameObject ammoCratePrefab;
     public float crateProbaRate = 0.2f;
+    public float baseRotation = 0f;
     private AudioSource audioSource;
 
     float spawnTime;
@@ -28,6 +29,7 @@ public class MonsterController : MonoBehaviour {
         Vector3 moveDir3 = new Vector3(moveDir.x, moveDir.y, 0f);
         quat.SetLookRotation(new Vector3(0f, 0f, 1f), moveDir3);
         gameObject.transform.rotation = quat;
+        gameObject.transform.Rotate(new Vector3(0f, 0f, baseRotation));
 
         gameObject.transform.position = gameObject.transform.position + moveDir3 * (speed * Time.deltaTime);
 

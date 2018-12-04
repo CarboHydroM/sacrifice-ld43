@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: 0, y: 0}
-  speed: 0.002
+  speed: 10
   scoreBounty: 100
   explosionPrefab: {fileID: 1680714478733238, guid: b3c0257391fec8b42a663aceb7e5b34c,
     type: 2}
@@ -222,12 +222,6 @@ MonoBehaviour:
   - {fileID: 21300022, guid: f92ffa66ac1113c46abd734b1e36b6c7, type: 3}
   - {fileID: 21300108, guid: f92ffa66ac1113c46abd734b1e36b6c7, type: 3}
   playerIndex: 666
-  m_firingCycle: 0.1
-  m_bulletsPerShot: 1
-  m_bulletDelay: 0.05
-  m_bulletPrefab: {fileID: 0}
-  m_nacelle: {fileID: 0}
-  m_speed: 10
   m_moveXAxis: 
   m_moveYAxis: 
   m_fireXAxis: 

@@ -198,6 +198,23 @@ MonoBehaviour:
   timeToSpawn: 0.2
   monster: {fileID: 1966645853560210, guid: 22158d0a85a74c049818e4d35369e278, type: 2}
   unloadCollider: {fileID: 1242819901}
+  crateProbaRate: 0.5
+  spritesLevel1:
+  - {fileID: 21300034, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300028, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300012, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  spritesLevel2:
+  - {fileID: 21300068, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300072, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300070, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  spritesLevel3:
+  - {fileID: 21300104, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300110, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300130, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  spritesLevel4:
+  - {fileID: 21300164, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300176, guid: 265f170d20a85fa4998f53666c837973, type: 3}
+  - {fileID: 21300188, guid: 265f170d20a85fa4998f53666c837973, type: 3}
 --- !u!4 &1552533127
 Transform:
   m_ObjectHideFlags: 0
