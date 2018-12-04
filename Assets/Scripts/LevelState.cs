@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelState : MonoBehaviour {
+    private AsyncOperation bgScnLoading;
+    private bool bgIsSet;   // <----- hypergruik
     public float distanceToReach = 20f;
     public string enemieScene;
     public string backgroundScene;
@@ -18,12 +20,23 @@ public class LevelState : MonoBehaviour {
     AsyncOperation loadPlayers;
     void Start () {
         SceneManager.LoadSceneAsync("Scenes/" + enemieScene, LoadSceneMode.Additive);
-        SceneManager.LoadSceneAsync("Scenes/" + backgroundScene, LoadSceneMode.Additive);
+        bgScnLoading = SceneManager.LoadSceneAsync("Scenes/" + backgroundScene, LoadSceneMode.Additive);
         loadPlayers = SceneManager.LoadSceneAsync("Scenes/Players", LoadSceneMode.Additive);
+        bgIsSet = false;
     }
 
     bool firstUpdate = true;
     void Update () {
+        if (bgScnLoading.isDone && !bgIsSet)
+        {
+            GameObject gobj = GameObject.FindGameObjectWithTag("BG");
+            BackgroundScrolling bgs = gobj.GetComponent<BackgroundScrolling>();
+            gobj = GameObject.FindGameObjectWithTag("Party");
+            PartyStat partyStat = gobj.GetComponent<PartyStat>();
+            bgs.SetLevelBackground(partyStat.m_currentLevelIdx);
+            bgIsSet = true;
+        }
+
         if (firstUpdate)
         {
             if (loadPlayers.isDone == false)
