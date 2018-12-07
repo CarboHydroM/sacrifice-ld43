@@ -26,9 +26,19 @@ public class LevelState : MonoBehaviour {
     }
 
     bool firstUpdate = true;
+    Scene enemyScene;
+    Scene bgScene;
+    Scene playerScene;
     void Update () {
-        if (bgScnLoading.isDone && !bgIsSet)
+        if (bgScnLoading.isDone && !bgIsSet && loadPlayers.isDone && loadPlayers.isDone)
         {
+            enemyScene = SceneManager.GetSceneByName(enemieScene);
+            bgScene = SceneManager.GetSceneByName(backgroundScene);
+            playerScene = SceneManager.GetSceneByName("Players");
+            Debug.Assert(enemyScene.IsValid());
+            Debug.Assert(bgScene.IsValid());
+            Debug.Assert(playerScene.IsValid());
+
             GameObject gobj = GameObject.FindGameObjectWithTag("BG");
             Debug.Assert(gobj);
             BackgroundScrolling bgs = gobj.GetComponent<BackgroundScrolling>();
@@ -110,8 +120,8 @@ public class LevelState : MonoBehaviour {
 
     private void OnDestroy()
     {
-        SceneManager.UnloadSceneAsync("Scenes/" + enemieScene);
-        SceneManager.UnloadSceneAsync("Scenes/" + backgroundScene);
-        SceneManager.UnloadSceneAsync("Scenes/Players");
+        SceneManager.UnloadSceneAsync(playerScene);
+        SceneManager.UnloadSceneAsync(enemyScene);
+        SceneManager.UnloadSceneAsync(bgScene);
     }
 }

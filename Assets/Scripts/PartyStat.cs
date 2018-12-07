@@ -127,9 +127,9 @@ public class PartyStat : MonoBehaviour {
     void UnloadLevel()
     {
         if (m_currentLevelIdx == 5)
-            SceneManager.UnloadSceneAsync("Scenes/End");
+            SceneManager.UnloadSceneAsync("End");
         else
-            SceneManager.UnloadSceneAsync("Scenes/Level" + m_currentLevelIdx.ToString());
+            SceneManager.UnloadSceneAsync("Level" + m_currentLevelIdx.ToString());
     }
 
     public void EndLevel(int playerToDrop)  // Sacrifice has been choosen
