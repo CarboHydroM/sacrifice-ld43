@@ -150,6 +150,10 @@ public class PartyStat : MonoBehaviour {
         {
             Time.timeScale = 0f;
             gameOverCanvas.SetActive(true);
+
+            // switch to sacrifice theme
+            MusicSystem ms = musicSys.GetComponent<MusicSystem>();
+            ms.PlayClip(0);
         }
     }
 }

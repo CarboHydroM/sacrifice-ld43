@@ -68,6 +68,12 @@ public class GameState : MonoBehaviour
         partyInstance.OnExitParty();
         Destroy(partyInstance);
         //m_state = State.InGame;
+
+        // stop music when going back to title
+        GameObject musicSys = GameObject.FindGameObjectWithTag("Music");
+        Debug.Assert(musicSys);
+        MusicSystem ms = musicSys.GetComponent<MusicSystem>();
+        ms.Stop();
     }
 
     public void OnLevelResume()
